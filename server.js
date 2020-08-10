@@ -3,6 +3,7 @@ const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const axios = require('axios');
 const app = express();
+var db = require('./models');
 
 let API_KEY = process.env.API_KEY;
 //USING .env to hide our API key
@@ -63,6 +64,28 @@ app.get('/movies/:movie_id', (req, res) => {
         console.log('Error', error);
   });
 });
+
+app.get('/faves', (req,res) => {
+  db.fave.findAll().then((movies) => {
+    // console.log(movies);
+    res.render('faves', {myMovies: movies})
+  })
+})
+
+app.post('/faves', (req,res) => {
+  db.fave.findOrCreate({
+    where: {
+      title: req.body.Title,
+      imdbId: req.body.imdbID
+    }
+  }).then(([movie,created]) => {
+    res.redirect(`/faves`);
+  }).catch(err => {
+    console.log(err);
+  })
+})
+
+
 
 // The app.listen function returns a server handle
 var server = app.listen(process.env.PORT || 3000);

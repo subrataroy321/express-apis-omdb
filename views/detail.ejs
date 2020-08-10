@@ -3,11 +3,18 @@
 
 
 <div>
+    <%// console.log(data) %> 
     <h1><%= data.Title %> </h1>
     <img src="<%= data.Poster %> " alt="Movie Poster" srcset="">
     <h3>Director: <%= data.Director %> </h3>
     <h3>Plot: <%= data.Plot %> </h3>
     <% if(data.Ratings[1]) { %> 
-        <h3>Rotten Tomatos Rating: <%= data.Ratings[1].Value %> </h3>
+        <h3> Rotten Tomatos Rating: <%= data.Ratings[1].Value %> </h3>
     <% } %> 
+
+    <form action="/faves" method="post">
+        <input type="hidden" name="Title" value="<%= data.Title %> ">
+        <input type="hidden" name="imdbID" value="<%= data.imdbID %> ">
+        <button type="submit "href="">add to favorites</button>
+    </form>
 </div>

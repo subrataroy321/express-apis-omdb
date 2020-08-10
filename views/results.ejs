@@ -5,9 +5,9 @@
 <% if (episodes) { %> 
     <% episodes.forEach(e => { %>
         <div>
-            <a href="/movies/<%= e.imdbID %> "><%= e.Title %> </a>
+            <h2><a href="/movies/<%= e.imdbID %> "><%= e.Title %> </a></h2>
             <h2><%= e.Year %> </h2>
-            <img src="<%= e.Poster %> " alt="Poster">
+            <a href="/movies/<%= e.imdbID %> "><img src="<%= e.Poster %> " alt="Poster"></a>
         </div>
     <% }) %> 
 <% } else { %> 

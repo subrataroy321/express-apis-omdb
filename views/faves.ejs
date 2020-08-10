@@ -1,0 +1,9 @@
+
+<h4>Your Favorite Movies:</h4>
+</br>
+<% myMovies.forEach(movie => { %>
+    <div>
+        <a href="/movies/<%= movie.imdbId %> "> <%= movie.dataValues.title.charAt(0).toUpperCase() + movie.dataValues.title.slice(1) %></a>
+        </br>
+    </div>
+<% }) %> 
